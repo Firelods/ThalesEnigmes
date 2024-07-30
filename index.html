@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Soumission des Réponses aux Énigmes</title>
+    </head>
+    <body>
+        <h1>Soumettre une réponse</h1>
+        <form id="submitForm">
+            <label for="enigmeId">ID de l'Énigme :</label>
+            <input type="text" id="enigmeId" name="enigmeId" required />
+            <br />
+            <label for="userEmail">Votre Email :</label>
+            <input type="email" id="userEmail" name="userEmail" required />
+            <br />
+            <label for="reponse">Votre Réponse :</label>
+            <input type="text" id="reponse" name="reponse" required />
+            <br />
+            <button type="submit">Soumettre</button>
+        </form>
+
+        <script type="module" src="script/submit.js"></script>
+    </body>
+</html>

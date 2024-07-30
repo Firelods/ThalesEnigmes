@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Connexion Administration</title>
+    </head>
+    <body>
+        <h1>Connexion Administration</h1>
+        <form id="loginForm">
+            <label for="password">Mot de passe :</label>
+            <input type="password" id="password" required />
+            <button type="submit">Se connecter</button>
+        </form>
+
+        <script type="module">
+            import GOOGLE_APPS_SCRIPT_URL from "./script/link.js";
+            document
+                .getElementById("loginForm")
+                .addEventListener("submit", function (event) {
+                    event.preventDefault();
+                    const password = document.getElementById("password").value;
+
+                    fetch(`${GOOGLE_APPS_SCRIPT_URL}?login=true`, {
+                        method: "POST",
+                        body: JSON.stringify({ password: password }),
+                        headers: {
+                            "Content-Type": "text/plain;charset=utf-8",
+                        },
+                        redirect: "follow",
+                    })
+                        .then((response) => response.json())
+                        .then((result) => {
+                            if (result.token) {
+                                localStorage.setItem(
+                                    "adminToken",
+                                    result.token
+                                );
+                                console.log("Connexion réussie");
+                                window.location.href = "administration.html";
+                            } else {
+                                alert("Mot de passe incorrect");
+                            }
+                        })
+                        .catch((error) => {
+                            console.error("Erreur:", error);
+                        });
+                });
+        </script>
+    </body>
+</html>
